@@ -2,8 +2,11 @@ import ja_selenium
 import json
 import os
 import random
+import time
 import typer
 import typing_extensions
+
+from selenium.common.exceptions import WebDriverException
 
 TITLES = [
     "효과적인 매매전략을 찾아봅시다.",
@@ -41,6 +44,7 @@ def main(
     actions = [
         ["com_youtube_save_playlist", json_path, playlist],
         ["com_naver_login", nid_auth, nid_session],
+        ["sleep", 10],
         ["com_naver_stock_mobile_remove_all_discusses"],
     ]
 
@@ -61,7 +65,11 @@ def main(
             if play != playlist[-1]:
                 actions.append(["sleep", 70])
 
-    ja_selenium.runner(driver)(actions)
+    try:
+        ja_selenium.runner(driver)(actions)
+    except WebDriverException as e:
+        time.sleep(10)
+        raise e
 
 app = typer.Typer()
 app.command()(main)
