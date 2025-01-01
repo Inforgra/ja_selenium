@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ja_selenium"
+version = "0.1.0"
+dependencies = [
+  "selenium",
+  "typer",
+]
+requires-python = ">=3.8"
+authors = [
+  { name = "Inforgra", email = "inforgrax@gmail.com" },
+]
+maintainers = [
+  { name = "Inforgra", email = "inforgrax@gmail.com" },
+]
+readme = "README.md"
+
+[project.scripts]
+ja_selenium_cli = "ja_selenium.cli:app"
+com_naver_stock_discuss_write = "ja_selenium.com_naver_stock_discuss_write:app"
