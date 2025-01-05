@@ -8,25 +8,23 @@ import typing_extensions
 
 from selenium.common.exceptions import WebDriverException
 
-TITLES = [
-    "효과적인 매매전략을 찾아봅시다.",
-    "매수, 매도 타점을 분석해 봅시다.",
-    "매수와 매도의 적절한 타이밍을 파악해봅시다.",
-    "지지와 저항이 발생하는 가격을 발견해봅시다.",
-    "지지와 저항이 형성되는 가격을 알아봅시다.",
-    "가격 움직임에 따른 차트와 호가의 변화를 탐색해봅시다.",
-    "가격 변동과 함께 살펴보는 호가와 차트.",
+CONTENTS = [
+    ("매수와 매도 타점을 복기합니다.", "고점에서 매수하고, 저점에서 매도하지 않았는지.. \n나의 타점을 한번 복기해 보시길 바랍니다."),
+    ("지지와 저항이 발생하는 가격대를 복기합니다.", "고점에서 매수하고, 저점에서 매도하지 않았는지... \n나의 타점을 한번 복기해 보시길 바랍니다."),
+    ("가격 움직임에 따른 호가와 차트의 변화를 복기합니다.", "고점을 돌파한 이후\n어떻게 움직였는지 복기해 보시길 바랍니다."),
+    ("거래량이 늘면서 가격이 어떻게 움직이는지 복기합니다.", "고점을 돌파한 이후\n어떻게 움직였는지 복기해 보시길 바랍니다."),
 ]
 
 def parse(play):
     (date, stockname, stockcode) = play["title"].split(" ")[:3]
     url = play["url"]
+    title, content = random.choice(CONTENTS)
     return {
         "date": date,
         "stockcode": stockcode,
         "stockname": stockname,
-        "title": random.choice(TITLES),
-        "content": f"\n{url}",
+        "title": title,
+        "content": f"{content}\n{url}",
     }
 
 def main(
