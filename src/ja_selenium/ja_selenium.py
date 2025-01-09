@@ -3,6 +3,7 @@ import logging
 from selenium import webdriver
 
 from .actions import ACTION_TABLE
+from .exception import JaSeleniumError
 
 class JaSelenium:
 
@@ -12,10 +13,6 @@ class JaSelenium:
         self.state = {}
         self.options = options
         self.actions = []
-
-    def __del__(self):
-        if self.driver is not None:
-            self.driver.close()
 
     def get_driver(self):
         return self.driver
@@ -39,6 +36,7 @@ class JaSelenium:
         options.binary_location = "/usr/bin/firefox"
         options.add_argument("--display=:4")
         options.profile = "/home/kjkang/.mozilla/firefox/2p9ha9qk.selenium"
+        self.logger.info("웹드라이버를 시작합니다.")
         self.driver = webdriver.Firefox(options=options)
         try:
             for cls, params in self.actions:
@@ -48,3 +46,6 @@ class JaSelenium:
                 action.run()
         except JaSeleniumError as e:
             self.logger.error(e)
+        finally:
+            self.logger.info("웹드라이브를 종료합니다.")
+            self.driver.close()
