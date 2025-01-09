@@ -16,7 +16,7 @@ class WriteJSON(Action):
         self.state_key = state_key
 
     def run(self):
-        value = self.controller.get_state()[self.state_key]
+        value = self.controller.get_state(self.state_key)
         self.logger.debug(f'Action WriteJSON - key: {self.state_key}, value: {value}')
         with open(self.filename, 'w') as fp:
             json.dump(value, fp, ensure_ascii=False)
