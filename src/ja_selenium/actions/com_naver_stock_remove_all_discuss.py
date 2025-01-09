@@ -22,6 +22,7 @@ class ComNaverStockRemoveAllDiscuss(Action):
             driver = self.controller.get_driver()
             while True:
                 driver.get("https://m.stock.naver.com/discuss/my/domestic/stock/005930?search=all")
+                time.sleep(2)
                 discusses = driver.find_elements(By.CSS_SELECTOR, "ul[class*=DiscussListItem]")
                 if len(discusses) == 0:
                     self.logger.info("내 게시글이 더 이상 없습니다.")
