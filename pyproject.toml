@@ -19,5 +19,4 @@ maintainers = [
 readme = "README.md"
 
 [project.scripts]
-ja_selenium_cli = "ja_selenium.cli:app"
-com_naver_stock_discuss_write = "ja_selenium.com_naver_stock_discuss_write:app"
+ja_selenium = "ja_selenium.ja_selenium_client:app"

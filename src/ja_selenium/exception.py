@@ -1,0 +1,2 @@
+class JaSeleniumError(Exception):
+    pass

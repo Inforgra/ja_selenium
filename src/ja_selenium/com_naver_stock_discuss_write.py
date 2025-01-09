@@ -1,5 +1,6 @@
 import ja_selenium
 import json
+import logging
 import os
 import random
 import time
@@ -9,10 +10,10 @@ import typing_extensions
 from selenium.common.exceptions import WebDriverException
 
 CONTENTS = [
-    ("매수와 매도 타점을 복기합니다.", "고점에서 매수하고, 저점에서 매도하지 않았는지.. \n나의 타점을 한번 복기해 보시길 바랍니다."),
-    ("지지와 저항이 발생하는 가격대를 복기합니다.", "고점에서 매수하고, 저점에서 매도하지 않았는지... \n나의 타점을 한번 복기해 보시길 바랍니다."),
-    ("가격 움직임에 따른 호가와 차트의 변화를 복기합니다.", "고점을 돌파한 이후\n어떻게 움직였는지 복기해 보시길 바랍니다."),
-    ("거래량이 늘면서 가격이 어떻게 움직이는지 복기합니다.", "고점을 돌파한 이후\n어떻게 움직였는지 복기해 보시길 바랍니다."),
+    ("매수와 매도 타점을 복기해 봅시다.", "6분 투자로 나의 타점을 한번 복기해 보시길 바랍니다."),
+    ("지지와 저항이 발생하는 가격대를 복기해 봅시다.", "6분 투자로 나의 타점을 한번 복기해 보시길 바랍니다."),
+    ("가격 움직임에 따른 호가와 차트의 변화를 복기해 봅시다.", "6분 투자로 가격과 호가의 변화를 복기해 보시길 바랍니다."),
+    ("거래량이 늘면서 가격이 어떻게 움직이는지 복기해 봅시다.", "6분 투자로 가격과 호가의 변화를 복기해 보시길 바랍니다."),
 ]
 
 def parse(play):
@@ -32,6 +33,9 @@ def main(
         nid_session: typing_extensions.Annotated[str, typer.Option(help="NID_SESSION")] = None,
         playlist: typing_extensions.Annotated[str, typer.Option(help="PLAYLIST")] = None,
 ):
+    logging.basicConfig(format='%(asctime)s %(name)s %(levelname)s %(message)s', level=logging.INFO, datefmt='%Y-%m-%d %I:%M:%S')
+    logging.getLogger("ja_selenium").setLevel(logging.DEBUG)
+
     nid_auth = os.environ["NID_AUTH"]
     nid_session = os.environ["NID_SESSION"]
     playlist = os.environ["PLAYLIST"]
@@ -63,6 +67,7 @@ def main(
             if play != playlist[-1]:
                 actions.append(["sleep", 70])
 
+    print(actions)
     try:
         ja_selenium.runner(driver)(actions)
     except WebDriverException as e:
