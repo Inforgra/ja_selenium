@@ -1,10 +1,9 @@
 import logging
 import time
-
 from selenium.common.exceptions import WebDriverException
-
 from ..exception import JaSeleniumError
 from .action import Action
+
 
 class Get(Action):
 

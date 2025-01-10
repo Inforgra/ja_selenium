@@ -1,12 +1,11 @@
 import logging
 import time
-import urllib.parse
 
 from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.common.by import By
 
 from .action import Action
 from ..exception import JaSeleniumError
+
 
 class ComNaverLogin(Action):
 
@@ -25,8 +24,8 @@ class ComNaverLogin(Action):
         try:
             driver = self.controller.get_driver()
             driver.get('http://www.naver.com')
-            driver.add_cookie({ "name": "NID_AUT", "value": self.auth, "domain": ".naver.com" })
-            driver.add_cookie({ "name": "NID_SES", "value": self.session, "domain": ".naver.com" })
+            driver.add_cookie({"name": "NID_AUT", "value": self.auth, "domain": ".naver.com"})
+            driver.add_cookie({"name": "NID_SES", "value": self.session, "domain": ".naver.com"})
             time.sleep(self.sleep)
             driver.get('http://www.naver.com')
             time.sleep(self.sleep)

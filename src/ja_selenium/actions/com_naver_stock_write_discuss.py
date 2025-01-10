@@ -1,13 +1,11 @@
 import logging
 import random
 import time
-import urllib.parse
-
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.by import By
-
 from .action import Action
 from ..exception import JaSeleniumError
+
 
 class ComNaverStockWriteDiscuss(Action):
 
@@ -22,7 +20,6 @@ class ComNaverStockWriteDiscuss(Action):
 
     def run(self):
         try:
-            driver = self.controller.get_driver()
             for (date, _, stockcode, url) in self.controller.get_state(self.state_key):
                 (title, content) = random.choice(self.contents)
                 content = content.replace("[URL]", url)

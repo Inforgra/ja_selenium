@@ -1,14 +1,13 @@
 import json
 import logging
-
 from .action import Action
+
 
 class WriteJSON(Action):
 
     @staticmethod
     def params():
         return ["filename", "state_key"]
-
 
     def __init__(self, filename, state_key):
         self.logger = logging.getLogger('ja_selenium.WriteJSON')

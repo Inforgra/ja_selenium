@@ -1,7 +1,7 @@
 import logging
 import time
-
 from .action import Action
+
 
 class Sleep(Action):
 
