@@ -1,5 +1,6 @@
 from .action import Action
 from .com_naver_login import ComNaverLogin
+from .com_naver_stock_discuss_write import ComNaverStockDiscussWrite
 from .com_naver_stock_fetch_stockcode_list_from_youtube_play_list import ComNaverStockFetchStockcodeListFromYoutubePlayList
 from .com_naver_stock_remove_all_discuss import ComNaverStockRemoveAllDiscuss
 from .com_naver_stock_write_discuss import ComNaverStockWriteDiscuss
@@ -11,6 +12,7 @@ from .write_json import WriteJSON
 
 ACTION_TABLE = {
     'com_naver_login': ComNaverLogin,
+    'com_naver_stock_discuss_write': ComNaverStockDiscussWrite,
     'com_naver_stock_fetch_stockcode_list_from_youtube_play_list': ComNaverStockFetchStockcodeListFromYoutubePlayList,
     'com_naver_stock_remove_all_discuss': ComNaverStockRemoveAllDiscuss,
     'com_naver_stock_write_discuss': ComNaverStockWriteDiscuss,

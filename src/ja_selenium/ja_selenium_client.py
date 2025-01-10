@@ -16,6 +16,7 @@ class NotTooLongStringFormatter(logging.Formatter):
             record.msg = record.msg[:self.max_length] + "..."
         return super().format(record)
 
+
 def main(
         config: Annotated[str, typer.Argument(help="actions json")] = None,
 ):
@@ -23,7 +24,7 @@ def main(
     fmt='%(asctime)s %(name)s %(levelname)s %(message)s'
     logging.basicConfig(format=fmt, level=logging.INFO, datefmt='%Y-%m-%d %I:%M:%S')
     logging.getLogger("ja_selenium").setLevel(logging.DEBUG)
-    logging.root.handlers[0].setFormatter(NotTooLongStringFormatter(fmt))
+    #logging.root.handlers[0].setFormatter(NotTooLongStringFormatter(fmt))
 
     with open(config) as fp:
         actions = json.load(fp)
